@@ -8,28 +8,33 @@ public:
 	FifoEscritura(const std::string nombre);
 	~FifoEscritura();
 
-	//void abrir();
 	ssize_t escribir(const void* buffer, const ssize_t buffsize) const;
 };
 
 /////////////////////////////////////////
 /////////////////////////////////////////
 
-FifoEscritura::FifoEscritura(const std::string nombre) : Fifo(nombre) {
-	fd = open (nombre.c_str(), O_WRONLY);
+FifoEscritura::FifoEscritura(const std::string nombre) : Fifo(nombre) {	
+	if ((fd = open (nombre.c_str(), O_WRONLY)) < 0) {
+		std::string mensaje = std::string("Error en open: ") + std::string(strerror(errno));
+		throw mensaje;
+	}
 }
 
 FifoEscritura::~FifoEscritura() {
-	close ( fd );
+	close(fd);
 	fd = -1;
 }
 
-// void FifoEscritura::abrir() {
-// 	fd = open (nombre.c_str(), O_WRONLY);
-// }
-
 ssize_t FifoEscritura::escribir(const void* buffer, const ssize_t buffsize) const {
-	return write (fd, buffer, buffsize);
+	ssize_t escrito;
+
+	if((escrito = write(fd, buffer, buffsize)) < 0) {
+		std::string mensaje = std::string("Error en write: ") + std::string(strerror(errno));
+		throw mensaje;
+	}
+
+	return escrito;
 }
 
 

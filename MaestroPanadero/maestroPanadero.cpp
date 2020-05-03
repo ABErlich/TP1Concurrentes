@@ -9,9 +9,11 @@
 #include "maestroPanadero.h"
 #include "../Utility/fifoEscritura.h"
 #include "../Utility/fifoLectura.h"
+#include "../Utility/memoriaCompartida.h"
 
 
 #define TIEMPO_HORNEADO_PAN 5
+#define CANT_INICIAL_PANES 5
 #define MASA "masa"
 
 //// EL MAESTRO PANADERO VA A ESTAR COMPUESTO POR UN UNICO PROCESO
@@ -21,13 +23,17 @@
 using namespace std;
 
 int main () {
+    string archivo = "/bin/ls";
+    
+    MemoriaCompartida<int> canasta (archivo, 'A');
+    canasta.escribir(CANT_INICIAL_PANES);
 
     while (true) {
         pedirMasaYHornear();
         sleep(TIEMPO_HORNEADO_PAN);
+        guardarPanEnCanasto(canasta);
     }
     
-
     return 0;
 }
 
@@ -36,11 +42,18 @@ void pedirMasaYHornear() {
     static const int BUFFSIZE = 100;
     static const std::string ARCHIVO_FIFO_LECTURA = "../Fifos/Especialista_Panadero";
     static const std::string ARCHIVO_FIFO_ESCRITURA = "../Fifos/Panadero_Especialista";
-    char pedido[] = MASA;
 
-    cout << obtenerFechaYHora() << " A punto de realizar un pedido de masa" << endl;
-    FifoEscritura escritura (ARCHIVO_FIFO_ESCRITURA);
-    escritura.escribir(pedido, sizeof(pedido));
+    FifoEscritura pedido (ARCHIVO_FIFO_ESCRITURA);
+    pedido.escribir(MASA, sizeof(MASA));
+   
+}
 
-    //  
+void guardarPanEnCanasto(MemoriaCompartida<int> &canasta) {
+
+    int cantPanes = canasta.leer();
+    cantPanes++;
+    canasta.escribir(cantPanes);
+
+    cout << obtenerFechaYHora() << " - Maestro panadero: Agregue un pan al canasto, cantidad: " << cantPanes << endl;
+
 }

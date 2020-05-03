@@ -6,6 +6,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <string.h>
 
 class Fifo {
 public:
@@ -31,13 +32,11 @@ Fifo::~Fifo() {
 	
 }
 
-// void Fifo::cerrar() {
-// 	close ( fd );
-// 	fd = -1;
-// }
-
 void Fifo::eliminar() const {
-	unlink ( nombre.c_str() );
+	if(unlink(nombre.c_str()) < 0){
+		std::string mensaje = std::string("Error en unlink: ") + std::string(strerror(errno));
+		throw mensaje;
+	}
 }
 
 

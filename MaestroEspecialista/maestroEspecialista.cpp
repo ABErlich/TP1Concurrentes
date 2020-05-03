@@ -12,7 +12,7 @@
 
 #define FIN "fin"
 #define MASA "masa"
-#define MASA_MADRE_TIEMPO_ALIMENTACION 5
+#define MASA_MADRE_TIEMPO_ALIMENTACION 15
 
 
 using namespace std;
@@ -26,7 +26,7 @@ int main () {
   
     pid_t pid = fork();
     if (pid < 0) {
-        cout << "Error fork: " << errno << endl;
+        cout << "Error fork: " << string(strerror(errno)) << endl;
         return errno;
     }
 
@@ -48,7 +48,7 @@ void alimentarMasaMadre() {
 
     while (true) {
         sleep(MASA_MADRE_TIEMPO_ALIMENTACION);
-        cout << obtenerFechaYHora() << " - Maestro especialista: alimento la masa madre" << endl;
+        cout << obtenerFechaYHora() << " - Maestro especialista: Alimento la masa madre" << endl;
     }
     
     return;
@@ -57,14 +57,18 @@ void alimentarMasaMadre() {
 void esperarPedidosDeMasa() {
 
     static const int BUFFSIZE = 100;
-    static const std::string ARCHIVO_FIFO_ESCRITURA = "../Fifos/Especialista_Panadero";
+    //static const std::string ARCHIVO_FIFO_ESCRITURA = "../Fifos/Especialista_Panadero";
     static const std::string ARCHIVO_FIFO_LECTURA = "../Fifos/Panadero_Especialista";
     char buffer[BUFFSIZE];
 
     while (true) {
-        cout << obtenerFechaYHora() << " Esperando pedido de masa..." << endl;
-        FifoLectura lectura (ARCHIVO_FIFO_LECTURA);
-        lectura.leer(buffer, BUFFSIZE);
+        try {
+            FifoLectura pedido (ARCHIVO_FIFO_LECTURA);
+            pedido.leer(buffer, BUFFSIZE);
+            cout << obtenerFechaYHora() << " - Maestro especialista: Recibi un pedido de masa..." << endl;
+        } catch(std::string error) {
+            cout << error << endl;
+        }
     }
 
 }

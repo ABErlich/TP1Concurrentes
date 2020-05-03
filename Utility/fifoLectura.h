@@ -8,7 +8,6 @@ public:
 	FifoLectura(const std::string nombre);
 	~FifoLectura();
 
-	//void abrir();
 	ssize_t leer(void* buffer,const ssize_t buffsize) const;
 };
 
@@ -16,20 +15,27 @@ public:
 ///////////////////////////////////
 
 FifoLectura::FifoLectura(const std::string nombre) : Fifo(nombre) {
-	fd = open ( nombre.c_str(),O_RDONLY );
+	
+	if ((fd = open(nombre.c_str(), O_RDONLY)) < 0) {
+		std::string mensaje = std::string("Error en open: ") + std::string(strerror(errno));
+		throw mensaje;
+	}
 }
 
 FifoLectura::~FifoLectura() {
-	close ( fd );
+	close(fd);
 	fd = -1;
 }
 
-// void FifoLectura::abrir() {
-// 	fd = open ( nombre.c_str(),O_RDONLY );
-// }
-
 ssize_t FifoLectura::leer(void* buffer,const ssize_t buffsize) const {
-	return read (fd, buffer, buffsize);
+	ssize_t leido;
+
+	if ((leido = read(fd, buffer, buffsize)) < 0) {
+		std::string mensaje = std::string("Error en read: ") + std::string(strerror(errno));
+		throw mensaje;
+	}
+
+	return leido;
 }
 
 

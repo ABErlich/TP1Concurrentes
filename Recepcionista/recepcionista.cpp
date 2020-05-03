@@ -8,6 +8,9 @@
 
 using namespace std;
 
+//// EL RECEPCIONISTA LO QUE HACE ES SIMPLEMENTE RECIBIR UN PEDIDO Y DELEGARLO A ALGUN MAESTRO SEGUN CORRESPONDA
+//// RECIBE POR STDIN EL PEDIDO Y LO DEVUELVE POR STDOUT
+
 void hacerPedido(string pedido);
 
 int main () {
@@ -42,9 +45,6 @@ void hacerPedido(string pedido) {
         cout << "Preparando pizza" << endl;
         // En el caso de la pizza tengo que hacer el pedido a un maestro pizzero y esperar que la cocine
 
-
-
-        
     } else{
         cout << "El pedido " << pedido << " no forma parte del menu." << endl;
     }

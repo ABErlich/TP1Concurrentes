@@ -19,19 +19,18 @@ using namespace std;
 void hacerPedido(string pedido);
 
 int main () {
-    
-    
-    string pedido;
 
-    cout << "Esperando pedido..." << endl;
-    cin >> pedido;
-    while (pedido.compare(FIN) != 0){
+    string pedido;
+    cout << "Hola soy su recepcionista" << endl;
+    // cout << "Esperando pedido..." << endl;
+    // cin >> pedido;
+    // while (pedido.compare(FIN) != 0){
         
-        hacerPedido(pedido);
+    //     hacerPedido(pedido);
        
-        cout << "Esperando pedido..." << endl;
-        cin >> pedido;
-    }
+    //     cout << "Esperando pedido..." << endl;
+    //     cin >> pedido;
+    // }
 
     return 0;
 }
@@ -53,9 +52,6 @@ void hacerPedido(string pedido) {
             cout << "Disculpe, no hay mas pan"<< endl;
         }
         
-        
-
-
     } else if (pedido.compare(PIZZA) == 0) {
         cout << "Preparando pizza" << endl;
         // En el caso de la pizza tengo que hacer el pedido a un maestro pizzero y esperar que la cocine

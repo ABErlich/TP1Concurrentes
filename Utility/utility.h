@@ -2,6 +2,7 @@
 #define UTILITY
 
 #include <stdlib.h>
+#include <sstream>
 
 std::string obtenerFechaYHora();
 

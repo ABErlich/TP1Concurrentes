@@ -1,5 +1,6 @@
 #include <iostream>
-#include <string.h>
+#include <fstream>
+#include <string>
 #include <stdlib.h>
 #include "../Utility/utility.h"
 #include "../Utility/memoriaCompartida.h"
@@ -7,7 +8,6 @@
 #define PIZZA "pizza"
 #define PAN "pan"
 #define FIN "fin"
-
 
 using namespace std;
 
@@ -17,24 +17,39 @@ using namespace std;
 //// EN CASO DE QUE EL PEDIDO SEA UNA PIZZA, DELEGA EL PEDIDO AL MAESTRO PIZZERO
 
 void hacerPedido(string pedido);
+string leerPedido();
 
 int main () {
 
     string pedido;
     cout << "Hola soy su recepcionista" << endl;
-    // cout << "Esperando pedido..." << endl;
-    // cin >> pedido;
-    // while (pedido.compare(FIN) != 0){
+    //leerPedido();
+    cin >> pedido;
+    while (pedido.compare(FIN) != 0){
         
-    //     hacerPedido(pedido);
+        //pedido = leerPedido();
+        hacerPedido(pedido);
        
-    //     cout << "Esperando pedido..." << endl;
-    //     cin >> pedido;
-    // }
+        cout << "Esperando pedido..." << endl;
+        cin >> pedido;
+    }
 
     return 0;
 }
 
+
+string leerPedido() {
+    string pedido;
+    ifstream archivo("./input.txt");
+    
+    if (archivo.is_open()) {
+        while (getline(archivo,pedido)) {
+            cout << pedido << '\n';
+        }
+        archivo.close();
+    }
+   
+}
 void hacerPedido(string pedido) {
     string archivo = "/bin/ls";
     MemoriaCompartida<int> canasta (archivo, 'A');

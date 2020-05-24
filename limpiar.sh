@@ -2,3 +2,12 @@ make clean
 cd Recepcionista/
 make clean
 cd ..
+cd MaestroPizzero/
+make clean
+cd ..
+cd MaestroPanadero/
+make clean
+cd ..
+cd MaestroEspecialista/
+make clean
+cd ..

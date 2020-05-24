@@ -22,7 +22,7 @@ string leerPedido();
 int main () {
 
     string pedido;
-    cout << "Hola soy su recepcionista" << endl;
+    cout << obtenerFechaYHora() << " - Recepcionista: Hola soy su recepcionista" << endl;
     //leerPedido();
     cin >> pedido;
     while (pedido.compare(FIN) != 0){
@@ -30,7 +30,7 @@ int main () {
         //pedido = leerPedido();
         hacerPedido(pedido);
        
-        cout << "Esperando pedido..." << endl;
+        cout << obtenerFechaYHora() << " - Recepcionista: Esperando pedido..." << endl;
         cin >> pedido;
     }
 

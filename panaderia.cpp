@@ -26,13 +26,18 @@ int main (int argc, char **argv) {
         throw;
     }
 
+
     // Creo los procesos en funcion de los parametros
+    cout << "Creando al maestro especialista." << endl;
+    crearProcesos(params.cantRecepcionistas, "./MaestroEspecialista/maestroEspecialista");
     cout << "Creando " << params.cantRecepcionistas << " recepcionistas." << endl;
     crearProcesos(params.cantRecepcionistas, "./Recepcionista/recepcionista");
-    //crearProcesos(params.cantPanaderos, "");
-    //crearProcesos(params.cantPizzeros, "");
+    cout << "Creando " << params.cantPanaderos << " panaderos." << endl;
+    crearProcesos(params.cantPanaderos, "./MaestroPanadero/maestroPanadero");
+    //cout << "Creando " << params.cantPanaderos << " panaderos." << endl;
+    //crearProcesos(params.cantPizzeros, "./MaestroPizzero/maestroPizzero");
 
-    int totalProcesos = params.cantRecepcionistas + params.cantPanaderos + params.cantPizzeros;
+    int totalProcesos = params.cantRecepcionistas + params.cantPanaderos + params.cantPizzeros + 1; // 1 por el maestro especialista
     for(int i = 0; i < totalProcesos; i++){
         wait(NULL);
     }

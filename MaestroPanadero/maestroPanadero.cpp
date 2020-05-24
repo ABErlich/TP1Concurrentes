@@ -40,8 +40,7 @@ int main () {
 void pedirMasaYHornear() {
 
     static const int BUFFSIZE = 100;
-    static const std::string ARCHIVO_FIFO_LECTURA = "../Fifos/Especialista_Panadero";
-    static const std::string ARCHIVO_FIFO_ESCRITURA = "../Fifos/Panadero_Especialista";
+    static const std::string ARCHIVO_FIFO_ESCRITURA = "../Fifos/Maestro_Especialista";
 
     FifoEscritura pedido (ARCHIVO_FIFO_ESCRITURA);
     pedido.escribir(MASA, sizeof(MASA));

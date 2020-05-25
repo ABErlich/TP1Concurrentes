@@ -57,14 +57,14 @@ void alimentarMasaMadre() {
 void esperarPedidosDeMasa() {
 
     static const int BUFFSIZE = 100;
-    static const std::string ARCHIVO_FIFO_LECTURA = "./Fifos/Maestro_Especialista";
+    static const std::string ARCHIVO_FIFO_LECTURA = "./fifo_especialista_panadero";
     char buffer[BUFFSIZE];
 
     while (true) {
         try {
             FifoLectura pedido (ARCHIVO_FIFO_LECTURA);
             pedido.leer(buffer, BUFFSIZE);
-            cout << obtenerFechaYHora() << " - Maestro especialista: Recibi un pedido de: " << buffer << endl;
+            //cout << obtenerFechaYHora() << " - Maestro especialista: Recibi un pedido de " << buffer << endl;
         } catch(std::string error) {
             cout << error << endl;
         }

@@ -21,7 +21,7 @@ using namespace std;
 
 //// EL MAESTRO PIZZERO VA A ESTAR COMPUESTO POR DOS PROCESOS
 //// 1) EL PRIMER PROCESO SE VA A ENCARGAR DE CADA X TIEMPO, PEDIRLE MASA A EL MAESTRO ESPECIALISTA Y PREPARAR LA PREPIZZA
-//// 2) EL SEGUNDO PROCESO SE VA A ENCARGAR DE ESCUCHAR LOS PEDIDOS DEL RECEPCIONISTA, Y AL RECIBIR UNO, COCINAR LA PIZZA Y DELVOLVERSELA
+//// 2) EL SEGUNDO PROCESO SE VA A ENCARGAR DE ESCUCHAR LOS PEDIDOS DEL RECEPCIONISTA, Y AL RECIBIR UNO, COCINAR LA PIZZA
 
 int main () {
 
@@ -81,7 +81,7 @@ void esperarPedidoDePizza(MemoriaCompartida<int> &cantPrepizzas) {
 
 void pedirMasaYPrepararPrepizza() {
     static const int BUFFSIZE = 100;
-    static const std::string ARCHIVO_FIFO_ESCRITURA = "../Fifos/Maestro_Especialista";
+    static const std::string ARCHIVO_FIFO_ESCRITURA = "../fifo_especialista_panadero";
 
     FifoEscritura pedido (ARCHIVO_FIFO_ESCRITURA);
     pedido.escribir(MASA, sizeof(MASA));

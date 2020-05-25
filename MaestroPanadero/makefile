@@ -1,10 +1,13 @@
-maestroPanadero: maestroPanadero.o lockFile.o
-	g++ maestroPanadero.o lockFile.o -o maestroPanadero
+maestroPanadero: maestroPanadero.o canasta.o lockFile.o
+	g++ maestroPanadero.o canasta.o lockFile.o -o maestroPanadero
 
 maestroPanadero.o: maestroPanadero.cpp
 	g++ -c maestroPanadero.cpp
 
-lockFile.o: 
+canasta.o: lockFile.o
+	g++ -c ../Utility/canasta.cpp
+
+lockFile.o:
 	g++ -c ../Utility/lockFile.cpp
 
 clean:

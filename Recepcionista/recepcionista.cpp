@@ -2,35 +2,39 @@
 #include <fstream>
 #include <string>
 #include <stdlib.h>
+#include <cstdlib>
 #include "../Utility/utility.h"
 #include "../Utility/memoriaCompartida.h"
+#include "../Utility/canasta.h"
+
 
 #define PIZZA "pizza"
 #define PAN "pan"
 #define FIN "fin"
+#define TIEMPO_DE_RECUPERACION 4
 
 using namespace std;
 
-//// EL RECEPCIONISTA LO QUE HACE ES SIMPLEMENTE RECIBIR UN PEDIDO
-//// RECIBE POR STDIN EL PEDIDO Y LO DEVUELVE LA RESPUESTA POR STDOUT
+//// EL RECEPCIONISTA LO QUE HACE ES RECIBIR PEDIDOS
 //// EN CASO DE QUE EL PEDIDO SEA UN PAN, SE VA A FIJAR AL CANASTO SI HAY PAN, EN CASO DE NO HABER DEVUELVE QUE NO HAY
 //// EN CASO DE QUE EL PEDIDO SEA UNA PIZZA, DELEGA EL PEDIDO AL MAESTRO PIZZERO
 
-void hacerPedido(string pedido);
+void hacerPedido(string pedido, int numeroPedido);
 string leerPedido();
 
 int main () {
 
     string pedido;
     cout << obtenerFechaYHora() << " - Recepcionista: Hola soy su recepcionista" << endl;
-    //leerPedido();
+    
     cin >> pedido;
     while (pedido.compare(FIN) != 0){
+
+        int numeroPedido = rand() % 10000; // genero un numero random para el pedido
+        cout << obtenerFechaYHora() << " - Recepcionista: Pedido numero: " << numeroPedido << " en preparacion" << endl;
+        //sleep(TIEMPO_DE_RECUPERACION); // Simulo un tiempo que tarda el recepcionista en hacer el pedido 
+        hacerPedido(pedido, numeroPedido);
         
-        //pedido = leerPedido();
-        hacerPedido(pedido);
-       
-        cout << obtenerFechaYHora() << " - Recepcionista: Esperando pedido..." << endl;
         cin >> pedido;
     }
 
@@ -50,21 +54,19 @@ string leerPedido() {
     }
    
 }
-void hacerPedido(string pedido) {
-    string archivo = "/bin/ls";
-    MemoriaCompartida<int> canasta (archivo, 'A');
-
+void hacerPedido(string pedido, int numeroPedido) {
+    
     if (pedido.compare(PAN) == 0) {
-        // En el caso del pan, tengo que ir a la canasta y ver si hay algun pan para
-        int panes = canasta.leer();
-        
+        Canasta canasta;
+
+        // En el caso del pan, tengo que ir a la canasta y ver si hay algun pan
+        int panes = canasta.sacarPan();
+
         if (panes > 0) {
-            cout << obtenerFechaYHora() << " - Recepcionista: Aqui tienes tu pan..." << endl;
-            panes--;
-            canasta.escribir(panes);
-            cout << "Cantidad de panes que quedan: " << canasta.leer() << endl;
+            cout << obtenerFechaYHora() << " - Recepcionista: Pedido numero: " << numeroPedido << " aqui tienes tu pan..." << endl;
+            cout << "Cantidad de panes que quedan: " << canasta.mirar() << endl;
         } else {
-            cout << "Disculpe, no hay mas pan"<< endl;
+            cout << "Disculpe, no hay mas pan" << endl;
         }
         
     } else if (pedido.compare(PIZZA) == 0) {

@@ -12,16 +12,12 @@ class Fifo {
 public:
 	Fifo(const std::string nombre);
 	virtual ~Fifo();
-	//virtual void abrir() = 0;
-	//void cerrar();
 	void eliminar() const;
 
 protected:
 	std::string nombre;
 	int fd;
 };
-
-
 
 
 Fifo::Fifo(const std::string nombre) : nombre(nombre), fd(-1) {

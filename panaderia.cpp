@@ -4,8 +4,11 @@
 #include <string>
 #include <stdexcept>
 #include <sys/wait.h>
+#include "./Utility/canasta.h"
 
 using namespace std;
+#define CANT_INICIAL_PANES 5
+
 
 struct params_t {
     int cantRecepcionistas;
@@ -18,6 +21,7 @@ void crearProcesos(int cant, string execPath);
 
 int main (int argc, char **argv) {
     params_t params;
+    
 
     try {
         params = parsearParametros(argc, argv);
@@ -26,6 +30,8 @@ int main (int argc, char **argv) {
         throw;
     }
 
+    Canasta canasta;
+    canasta.vaciar();
 
     // Creo los procesos en funcion de los parametros
     cout << "Creando al maestro especialista." << endl;

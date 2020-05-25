@@ -9,6 +9,7 @@
 #include "maestroEspecialista.h"
 #include <string.h>
 #include "../Utility/maestroEspecialista_com.h"
+#include "../Utility/logger.h"
 
 #define FIN "fin"
 #define MASA "masa"
@@ -51,10 +52,11 @@ int main () {
 }
 
 void alimentarMasaMadre() {
+    Logger logger;
 
     while (true) {
         sleep(MASA_MADRE_TIEMPO_ALIMENTACION);
-        cout << obtenerFechaYHora() << " - Maestro especialista: Alimento la masa madre" << endl;
+        logger.log(obtenerFechaYHora() + " - Maestro especialista: Alimento la masa madre\n");
     }
     
     return;

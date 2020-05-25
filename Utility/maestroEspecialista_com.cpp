@@ -11,13 +11,11 @@ MaestroEspecialistaCom::MaestroEspecialistaCom() : fd(-1), nombre("./tmp/especia
 
 void MaestroEspecialistaCom::entregarMasa() {
     fd = open(nombre.c_str(), O_WRONLY);
-    //std::cout << obtenerFechaYHora() << " Se entrego masa" << std::endl;
     close(fd);
 }
 
 void MaestroEspecialistaCom::pedirMasa() {
     fd = open(nombre.c_str(), O_RDONLY);
-    //std::cout << obtenerFechaYHora() << " Se pidio masa" << std::endl;
     close(fd);
 }
 

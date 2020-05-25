@@ -3,7 +3,6 @@
 
 #include "../Utility/memoriaCompartida.h"
 
-
 void pedirMasaYPrepararPrepizza();
 void esperarPedidoDePizza(MemoriaCompartida<int> &cantPrepizzas);
 void guardarPrepizza(MemoriaCompartida<int> &cantPrepizzas);

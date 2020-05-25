@@ -28,7 +28,7 @@ int main () {
     while (true) {
         
         comunicacion.pedirMasa();
-        std::cout << obtenerFechaYHora() << " - Maestro panadero: consegui masa, horneando... " << std::endl;
+        logger.log(obtenerFechaYHora() + " - Maestro panadero: consegui masa, horneando...\n");
         sleep(TIEMPO_HORNEADO_PAN);
 
         int cantPanes = canasta.agregarPan();

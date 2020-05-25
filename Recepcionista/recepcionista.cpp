@@ -20,7 +20,6 @@ using namespace std;
 //// EL RECEPCIONISTA LO QUE HACE ES RECIBIR PEDIDOS
 //// EN CASO DE QUE EL PEDIDO SEA UN PAN, SE VA A FIJAR AL CANASTO SI HAY PAN, EN CASO DE NO HABER DEVUELVE QUE NO HAY
 //// EN CASO DE QUE EL PEDIDO SEA UNA PIZZA, DELEGA EL PEDIDO AL MAESTRO PIZZERO
-
 void hacerPedido(string pedido, int numeroPedido, Logger &logger);
 string leerPedido();
 
@@ -33,12 +32,12 @@ int main () {
     
     cin >> pedido;
     while (pedido.compare(FIN) != 0){
-
-        int numeroPedido = rand() % 10000; // genero un numero random para el pedido
+        // genero un numero pseudo random para el pedido
+        srand(time(0));
+        int numeroPedido = rand() % 10000; 
         
         hacerPedido(pedido, numeroPedido, logger);
         
-
         cin >> pedido;
     }
 
@@ -78,9 +77,10 @@ void hacerPedido(string pedido, int numeroPedido, Logger &logger) {
     } else if (pedido.compare(PIZZA) == 0) {
         // En el caso de la pizza tengo que hacer el pedido a un maestro pizzero y esperar que la cocine        
         MaestroPizzeroCom comunicacionPizzero;
-        comunicacionPizzero.pedirPizza();
         logger.log(obtenerFechaYHora() + " - Recepcionista: Pedido numero: " + to_string(numeroPedido) + " pizza en preparacion\n");
+        comunicacionPizzero.pedirPizza(to_string(numeroPedido));
         sleep(TIEMPO_DE_PEDIR_PIZZA);
+        
     } else {
         cout << " - Recepcionista: Pedido numero: " << numeroPedido << ", el pedido " << pedido << " no forma parte del menu." << endl;
     }

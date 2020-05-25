@@ -11,7 +11,8 @@ public:
 	virtual ~MaestroEspecialistaCom();
 
     void pedirMasa();
-    void entregarMasa();
+	void pedirMasa(std::string numero);
+    std::string entregarMasa();
 
 protected:
 	int fd;

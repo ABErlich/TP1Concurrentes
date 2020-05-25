@@ -36,7 +36,7 @@ int main (int argc, char **argv) {
 
     // Creo los procesos en funcion de los parametros
     cout << "Creando al maestro especialista." << endl;
-    crearProcesos(params.cantRecepcionistas, "./MaestroEspecialista/maestroEspecialista");
+    crearProcesos(1, "./MaestroEspecialista/maestroEspecialista");
 
     cout << "Creando " << params.cantRecepcionistas << " recepcionistas." << endl;
     crearProcesos(params.cantRecepcionistas, "./Recepcionista/recepcionista");

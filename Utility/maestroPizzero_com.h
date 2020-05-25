@@ -10,8 +10,8 @@ public:
 	MaestroPizzeroCom();
 	virtual ~MaestroPizzeroCom();
 
-    void pedirPizza();
-    void esperarPedido();
+    void pedirPizza(std::string numeroPedido);
+    std::string esperarPedido();
 
 protected:
 	int fd;

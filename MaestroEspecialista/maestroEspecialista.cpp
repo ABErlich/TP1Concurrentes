@@ -13,7 +13,7 @@
 
 #define FIN "fin"
 #define MASA "masa"
-#define MASA_MADRE_TIEMPO_ALIMENTACION 15
+#define MASA_MADRE_TIEMPO_ALIMENTACION 16
 
 
 using namespace std;
@@ -24,7 +24,7 @@ using namespace std;
 ///     SE VAN A ESTAR RECIBIENDO LOS ARCHIVOS EN UN FIFO
 
 int main () {
-  
+    Logger logger;
     pid_t pid = fork();
     if (pid < 0) {
         cout << "Error fork: " << string(strerror(errno)) << endl;
@@ -35,15 +35,16 @@ int main () {
         // Proceso hijo
         MaestroEspecialistaCom comunicacion;
         while (true) {
-            comunicacion.entregarMasa();
+            std::string numero = comunicacion.entregarMasa();
+            logger.log(obtenerFechaYHora() + " - Maestro especialista: Entrego masa para pedido " + numero + '\n');
         }
         
         return 0;
     } else {
-
-        // Proceso padre
-        alimentarMasaMadre();
-
+        while (true) {
+            sleep(MASA_MADRE_TIEMPO_ALIMENTACION);
+            logger.log(obtenerFechaYHora() + " - Maestro especialista: Alimento la masa madre\n");
+        }
     }
 
     wait(NULL);
@@ -52,12 +53,9 @@ int main () {
 }
 
 void alimentarMasaMadre() {
-    Logger logger;
+    
 
-    while (true) {
-        sleep(MASA_MADRE_TIEMPO_ALIMENTACION);
-        logger.log(obtenerFechaYHora() + " - Maestro especialista: Alimento la masa madre\n");
-    }
+    
     
     return;
 }

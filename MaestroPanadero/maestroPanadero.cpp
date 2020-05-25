@@ -13,7 +13,7 @@
 #include "../Utility/maestroEspecialista_com.h"
 
 
-#define TIEMPO_HORNEADO_PAN 5
+#define TIEMPO_HORNEADO_PAN 11
 #define MASA "masa"
 
 //// EL MAESTRO PANADERO VA A ESTAR COMPUESTO POR UN UNICO PROCESO
@@ -27,8 +27,7 @@ int main () {
 
     while (true) {
         
-        comunicacion.pedirMasa();
-        logger.log(obtenerFechaYHora() + " - Maestro panadero: consegui masa, horneando...\n");
+        comunicacion.pedirMasa();        
         sleep(TIEMPO_HORNEADO_PAN);
 
         int cantPanes = canasta.agregarPan();

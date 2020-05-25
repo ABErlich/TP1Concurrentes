@@ -1,30 +1,19 @@
-25/4/2020 15:54:3 - Maestro panadero: Agregue un pan al canasto, cantidad: 1
-25/4/2020 15:54:3 - Maestro panadero: consegui masa, horneando...
-25/4/2020 15:54:4 - Recepcionista: Pedido numero: 9383 yendo a buscar pan.
-25/4/2020 15:54:5 - Recepcionista: Pedido numero: 9383 yendo a buscar pan.
-25/4/2020 15:54:8 - Maestro panadero: Agregue un pan al canasto, cantidad: 2
-25/4/2020 15:54:8 - Maestro panadero: consegui masa, horneando...
-25/4/2020 15:54:8 - Recepcionista: Pedido numero: 9383 aqui tienes tu pan. Quedan: 1
-25/4/2020 15:54:9 - Recepcionista: Pedido numero: 9383 aqui tienes tu pan. Quedan: 0
-25/4/2020 15:54:13 - Maestro especialista: Alimento la masa madre
-25/4/2020 15:54:13 - Maestro especialista: Alimento la masa madre
-25/4/2020 15:54:13 - Maestro panadero: Agregue un pan al canasto, cantidad: 1
-25/4/2020 15:54:13 - Maestro panadero: consegui masa, horneando...
-25/4/2020 15:54:17 - Recepcionista: Pedido numero: 886 yendo a buscar pan.
-25/4/2020 15:54:18 - Maestro panadero: Agregue un pan al canasto, cantidad: 2
-25/4/2020 15:54:18 - Maestro panadero: consegui masa, horneando...
-25/4/2020 15:54:19 - Recepcionista: Pedido numero: 886 yendo a buscar pan.
-25/4/2020 15:54:21 - Recepcionista: Pedido numero: 886 aqui tienes tu pan. Quedan: 1
-25/4/2020 15:54:21 - Recepcionista: Pedido numero: 2777 yendo a buscar pan.
-25/4/2020 15:54:23 - Maestro panadero: Agregue un pan al canasto, cantidad: 2
-25/4/2020 15:54:23 - Maestro panadero: consegui masa, horneando...
-25/4/2020 15:54:23 - Recepcionista: Pedido numero: 886 aqui tienes tu pan. Quedan: 1
-25/4/2020 15:54:25 - Recepcionista: Pedido numero: 2777 aqui tienes tu pan. Quedan: 0
-25/4/2020 15:54:28 - Maestro especialista: Alimento la masa madre
-25/4/2020 15:54:28 - Maestro especialista: Alimento la masa madre
-25/4/2020 15:54:28 - Maestro panadero: Agregue un pan al canasto, cantidad: 1
-25/4/2020 15:54:28 - Maestro panadero: consegui masa, horneando...
-25/4/2020 15:54:33 - Maestro panadero: Agregue un pan al canasto, cantidad: 2
-25/4/2020 15:54:33 - Maestro panadero: consegui masa, horneando...
-25/4/2020 15:54:38 - Maestro panadero: Agregue un pan al canasto, cantidad: 3
-25/4/2020 15:54:38 - Maestro panadero: consegui masa, horneando...
+25/4/2020 18:19:32 - Maestro panadero: Agregue un pan al canasto, cantidad: 1
+25/4/2020 18:19:32 - Maestro especialista: Entrego masa para pedido Sin numero
+25/4/2020 18:19:37 - Maestro especialista: Alimento la masa madre
+25/4/2020 18:19:43 - Maestro panadero: Agregue un pan al canasto, cantidad: 2
+25/4/2020 18:19:43 - Maestro especialista: Entrego masa para pedido Sin numero
+25/4/2020 18:19:51 - Recepcionista: Pedido numero: 7199 pizza en preparacion
+25/4/2020 18:19:51 - Maestro especialista: Entrego masa para pedido 7199
+25/4/2020 18:19:53 - Maestro especialista: Alimento la masa madre
+25/4/2020 18:19:54 - Maestro panadero: Agregue un pan al canasto, cantidad: 3
+25/4/2020 18:19:54 - Maestro especialista: Entrego masa para pedido Sin numero
+25/4/2020 18:20:2 - Maestro Pizzero: Pedido numero: 7199 entregando pizza...
+25/4/2020 18:20:2 - Maestro especialista: Entrego masa para pedido hp<þ
+25/4/2020 18:20:5 - Maestro panadero: Agregue un pan al canasto, cantidad: 4
+25/4/2020 18:20:5 - Maestro especialista: Entrego masa para pedido Sin numero
+25/4/2020 18:20:9 - Maestro especialista: Alimento la masa madre
+25/4/2020 18:20:13 - Maestro Pizzero: Pedido numero: hp<þ entregando pizza...
+25/4/2020 18:20:13 - Maestro especialista: Entrego masa para pedido hp<þ
+25/4/2020 18:20:16 - Maestro panadero: Agregue un pan al canasto, cantidad: 5
+25/4/2020 18:20:16 - Maestro especialista: Entrego masa para pedido Sin numero

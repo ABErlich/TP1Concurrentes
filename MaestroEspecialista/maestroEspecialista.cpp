@@ -7,8 +7,8 @@
 #include <sstream>
 #include "../Utility/utility.h"
 #include "maestroEspecialista.h"
-#include "../Utility/fifoEscritura.h"
-#include "../Utility/fifoLectura.h"
+#include <string.h>
+#include "../Utility/maestroEspecialista_com.h"
 
 #define FIN "fin"
 #define MASA "masa"
@@ -32,11 +32,17 @@ int main () {
 
     if (pid == 0) {
         // Proceso hijo
-        esperarPedidosDeMasa();
+        MaestroEspecialistaCom comunicacion;
+        while (true) {
+            comunicacion.entregarMasa();
+        }
+        
         return 0;
     } else {
+
         // Proceso padre
         alimentarMasaMadre();
+
     }
 
     wait(NULL);
@@ -52,22 +58,4 @@ void alimentarMasaMadre() {
     }
     
     return;
-}
-
-void esperarPedidosDeMasa() {
-
-    static const int BUFFSIZE = 100;
-    static const std::string ARCHIVO_FIFO_LECTURA = "./fifo_especialista_maestro";
-    char buffer[BUFFSIZE];
-
-    while (true) {
-        try {
-            FifoLectura pedido (ARCHIVO_FIFO_LECTURA);
-            pedido.leer(buffer, BUFFSIZE);
-            //cout << obtenerFechaYHora() << " - Maestro especialista: Recibi un pedido de " << buffer << endl;
-        } catch(std::string error) {
-            cout << error << endl;
-        }
-    }
-
 }

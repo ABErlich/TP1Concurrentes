@@ -45,14 +45,17 @@ template <class T> void MemoriaCompartida<T>::crear(const std::string& archivo, 
 				this->ptrDatos = static_cast<T*> (tmpPtr);
 			} else {
 				std::string mensaje = std::string("Error en shmat(): ") + std::string(strerror(errno));
+				std::cout << mensaje << std::endl;
 				throw mensaje;
 			}
 		} else {
 			std::string mensaje = std::string("Error en shmget(): ") + std::string(strerror(errno));
+			std::cout << mensaje << std::endl;
 			throw mensaje;
 		}
 	} else {
 		std::string mensaje = std::string("Error en ftok(): ") + std::string(strerror(errno));
+		std::cout << mensaje << std::endl;
 		throw mensaje;
 	}
 }
@@ -67,6 +70,7 @@ template <class T> void MemoriaCompartida<T>::liberar() {
 		}
 	} else {
 		std::string mensaje = std::string("Error en shmdt(): ") + std::string(strerror(errno));
+		std::cout << mensaje << std::endl;
 		throw mensaje;
 	}
 }
@@ -83,14 +87,17 @@ template <class T> MemoriaCompartida<T>::MemoriaCompartida ( const std::string& 
 				this->ptrDatos = static_cast<T*> (tmpPtr);
 			} else {
 				std::string mensaje = std::string("Error en shmat(): ") + std::string(strerror(errno));
+				std::cout << mensaje << std::endl;
 				throw mensaje;
 			}
 		} else {
 			std::string mensaje = std::string("Error en shmget(): ") + std::string(strerror(errno));
+			std::cout << mensaje << std::endl;
 			throw mensaje;
 		}
 	} else {
 		std::string mensaje = std::string("Error en ftok(): ") + std::string(strerror(errno));
+		std::cout << mensaje << std::endl;
 		throw mensaje;
 	}
 }
@@ -102,6 +109,7 @@ template <class T> MemoriaCompartida<T>::MemoriaCompartida ( const MemoriaCompar
 		this->ptrDatos = static_cast<T*> (tmpPtr);
 	} else {
 		std::string mensaje = std::string("Error en shmat(): ") + std::string(strerror(errno));
+		std::cout << mensaje << std::endl;
 		throw mensaje;
 	}
 }
@@ -127,6 +135,7 @@ template <class T> MemoriaCompartida<T>& MemoriaCompartida<T>::operator= ( const
 		this->ptrDatos = static_cast<T*> (tmpPtr);
 	} else {
 		std::string mensaje = std::string("Error en shmat(): ") + std::string(strerror(errno));
+		std::cout << mensaje << std::endl;
 		throw mensaje;
 	}
 

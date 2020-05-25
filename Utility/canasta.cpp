@@ -3,12 +3,12 @@
 #include <iostream>
 #include "lockFile.h"
 
-Canasta::Canasta(): MemoriaCompartida("/bin/ls", 'A'), lock("canasta.txt") {
+Canasta::Canasta(): MemoriaCompartida("/bin/ls", 'A'), lock("./tmp/canasta.txt") {
 
 
 }
 
-Canasta::Canasta (const std::string& archivo, const char letra): MemoriaCompartida(archivo, letra), lock("canasta.txt") {
+Canasta::Canasta (const std::string& archivo, const char letra): MemoriaCompartida(archivo, letra), lock("./tmp/canasta.txt") {
 }
 
 int Canasta::mirar() {

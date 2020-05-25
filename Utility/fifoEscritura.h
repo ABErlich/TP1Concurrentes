@@ -19,6 +19,7 @@ public:
 FifoEscritura::FifoEscritura(const std::string nombre) : Fifo(nombre) {	
 	if ((fd = open (nombre.c_str(), O_WRONLY|O_CREAT)) < 0) {
 		std::string mensaje = std::string("Error en open: ") + std::string(strerror(errno));
+		std::cout << mensaje << std::endl;
 		throw mensaje;
 	}
 }
@@ -34,6 +35,7 @@ ssize_t FifoEscritura::escribir(const void* buffer, const ssize_t buffsize) cons
 
 	if((escrito = write(fd, buffer, buffsize)) < 0) {
 		std::string mensaje = std::string("Error en write: ") + std::string(strerror(errno));
+		std::cout << mensaje << std::endl;
 		throw mensaje;
 	}
 

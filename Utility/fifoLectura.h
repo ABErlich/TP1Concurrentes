@@ -19,6 +19,7 @@ FifoLectura::FifoLectura(const std::string nombre) : Fifo(nombre) {
 	
 	if ((fd = open(nombre.c_str(), O_RDONLY|O_CREAT)) < 0) {
 		std::string mensaje = std::string("Error en open: ") + std::string(strerror(errno));
+		std::cout << mensaje << std::endl;
 		throw mensaje;
 	}
 }
@@ -34,6 +35,7 @@ ssize_t FifoLectura::leer(void* buffer,const ssize_t buffsize) const {
 
 	if ((leido = read(fd, buffer, buffsize)) < 0) {
 		std::string mensaje = std::string("Error en read: ") + std::string(strerror(errno));
+		std::cout << mensaje << std::endl;
 		throw mensaje;
 	}
 

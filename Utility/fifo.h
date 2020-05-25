@@ -31,6 +31,7 @@ Fifo::~Fifo() {
 void Fifo::eliminar() const {
 	if(unlink(nombre.c_str()) < 0){
 		std::string mensaje = std::string("Error en unlink: ") + std::string(strerror(errno));
+		std::cout << mensaje << std::endl;
 		throw mensaje;
 	}
 }

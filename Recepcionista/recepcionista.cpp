@@ -33,11 +33,10 @@ int main () {
     while (pedido.compare(FIN) != 0){
 
         int numeroPedido = rand() % 10000; // genero un numero random para el pedido
-        logger.log(obtenerFechaYHora() + " - Recepcionista: Pedido numero: " + to_string(numeroPedido) + " en preparacion\n");
         
-        sleep(TIEMPO_DE_RECUPERACION); // Simulo un tiempo que tarda el recepcionista en hacer el pedido 
         hacerPedido(pedido, numeroPedido, logger);
-        
+        sleep(TIEMPO_DE_RECUPERACION); // Simulo un tiempo que tarda el recepcionista en terminar el pedido
+
         cin >> pedido;
     }
 
@@ -60,6 +59,7 @@ string leerPedido() {
 void hacerPedido(string pedido, int numeroPedido, Logger &logger) {
     
     if (pedido.compare(PAN) == 0) {
+        logger.log(obtenerFechaYHora() + " - Recepcionista: Pedido numero: " + to_string(numeroPedido) + " en preparacion\n");
         Canasta canasta;
 
         // En el caso del pan, tengo que ir a la canasta y ver si hay algun pan
@@ -73,7 +73,7 @@ void hacerPedido(string pedido, int numeroPedido, Logger &logger) {
         }
         
     } else if (pedido.compare(PIZZA) == 0) {
-        cout << " - Recepcionista: Pedido numero: " << numeroPedido << endl;
+        logger.log(obtenerFechaYHora() + " - Recepcionista: Pedido numero: " + to_string(numeroPedido) + " en preparacion\n");
         // En el caso de la pizza tengo que hacer el pedido a un maestro pizzero y esperar que la cocine
 
     } else {

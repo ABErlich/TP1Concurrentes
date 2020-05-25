@@ -1,5 +1,5 @@
-panaderia: panaderia.o canasta.o lockFile.o logger.o
-	g++ panaderia.o canasta.o lockFile.o logger.o -o panaderia
+panaderia: panaderia.o canasta.o lockFile.o logger.o signalHandler.o
+	g++ panaderia.o canasta.o lockFile.o logger.o signalHandler.o -o panaderia
 
 panaderia.o: panaderia.cpp
 	g++ -c panaderia.cpp
@@ -12,6 +12,9 @@ lockFile.o:
 	
 logger.o:
 	g++ -c ./Utility/logger.cpp
+
+signalHandler.o:
+	g++ -c ./Utility/signalHandler.cpp
 
 clean:
 	rm *.o panaderia

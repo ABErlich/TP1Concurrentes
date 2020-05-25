@@ -12,9 +12,11 @@
 #include "../Utility/maestroEspecialista_com.h"
 #include "../Utility/memoriaCompartida.h"
 #include "../Utility/logger.h"
+#include "../Utility/sigintHandler.h"
+#include "../Utility/signalHandler.h"
 
-#define TIEMPO_HORNEADO_PREPIZZA 7
-#define TIEMPO_COCCION_PIZZA 4
+#define TIEMPO_HORNEADO_PREPIZZA 1
+#define TIEMPO_COCCION_PIZZA 1
 
 using namespace std;
 
@@ -23,18 +25,23 @@ using namespace std;
 //// 2) EL SEGUNDO PROCESO SE VA A ENCARGAR DE ESCUCHAR LOS PEDIDOS DEL RECEPCIONISTA, Y AL RECIBIR UNO, COCINAR LA PIZZA
 
 int main () {
-    MaestroPizzeroCom comunicacionRecepcionista;
-    MaestroEspecialistaCom comunicacionEspecialista;
     Logger logger;
+    SigintHandler sigint_handler;
+    SignalHandler::getInstance()->registrarHandler(SIGINT, &sigint_handler);
+    
+    while (sigint_handler.getGracefulQuit() == 0) {
+        MaestroEspecialistaCom comunicacionEspecialista;
+        MaestroPizzeroCom comunicacionRecepcionista;
+        
+        std::string numero = comunicacionRecepcionista.esperarPedido(); // ACA BLOQUEA HASTA QUE LE LLEGA UN PEDIDO DE PIZZA
+        comunicacionEspecialista.pedirMasa(numero); // LE PIDE LA MASA AL ESPECIALISTA
 
-    while (true) {
-        std::string numero = comunicacionRecepcionista.esperarPedido();
-
-        comunicacionEspecialista.pedirMasa(numero);
         sleep(TIEMPO_HORNEADO_PREPIZZA + TIEMPO_COCCION_PIZZA);
         logger.log(obtenerFechaYHora() + " - Maestro Pizzero: Pedido numero: " + numero + " entregando pizza...\n");
     }
 
+    logger.log(" - Maestro pizzero: Retirandome\n");
+    SignalHandler::destruir();
     return 0;
 }
 

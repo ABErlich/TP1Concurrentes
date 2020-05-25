@@ -4,8 +4,15 @@
 #include <string>
 #include <fcntl.h>
 #include <sys/stat.h>
+#include "lockFile.h"
 
 class MaestroEspecialistaCom {
+
+protected:
+	int fd;
+	LockFile lock;
+	std::string nombre;
+
 public:
 	MaestroEspecialistaCom();
 	virtual ~MaestroEspecialistaCom();
@@ -14,9 +21,7 @@ public:
 	void pedirMasa(std::string numero);
     std::string entregarMasa();
 
-protected:
-	int fd;
-	std::string nombre;
+
 };
 
 

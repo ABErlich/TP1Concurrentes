@@ -11,7 +11,8 @@
 #include "../Utility/logger.h"
 #include "../Utility/canasta.h"
 #include "../Utility/maestroEspecialista_com.h"
-
+#include "../Utility/sigintHandler.h"
+#include "../Utility/signalHandler.h"
 
 #define TIEMPO_HORNEADO_PAN 11
 #define MASA "masa"
@@ -21,20 +22,22 @@
 //// LUEGO LA VA A HORNEAR Y CUANDO TERMINA LA VA A PONER EN LA CANASTA (Memoria compartida)
 
 int main () {
+    SigintHandler sigint_handler;
+    SignalHandler::getInstance()->registrarHandler(SIGINT, &sigint_handler);
     Canasta canasta;
     Logger logger;
     MaestroEspecialistaCom comunicacion;
-
-    while (true) {
-        
-        comunicacion.pedirMasa();        
+    
+    while (sigint_handler.getGracefulQuit() == 0) {
+        comunicacion.pedirMasa(); // LE PIDE MASA AL ESPECIALISTA
         sleep(TIEMPO_HORNEADO_PAN);
 
-        int cantPanes = canasta.agregarPan();
+        int cantPanes = canasta.agregarPan(); // AGREGA EL PAN RECIEN HORNEADO AL CANASTO
         logger.log(obtenerFechaYHora() + " - Maestro panadero: Agregue un pan al canasto, cantidad: " + std::to_string(cantPanes) + '\n');
-
     }
     
+    logger.log(" - Maestro panadero: Retirandome\n");
+    SignalHandler::destruir();
     return 0;
 }
 

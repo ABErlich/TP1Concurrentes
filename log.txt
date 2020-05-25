@@ -1,19 +1,17 @@
-25/4/2020 18:19:32 - Maestro panadero: Agregue un pan al canasto, cantidad: 1
-25/4/2020 18:19:32 - Maestro especialista: Entrego masa para pedido Sin numero
-25/4/2020 18:19:37 - Maestro especialista: Alimento la masa madre
-25/4/2020 18:19:43 - Maestro panadero: Agregue un pan al canasto, cantidad: 2
-25/4/2020 18:19:43 - Maestro especialista: Entrego masa para pedido Sin numero
-25/4/2020 18:19:51 - Recepcionista: Pedido numero: 7199 pizza en preparacion
-25/4/2020 18:19:51 - Maestro especialista: Entrego masa para pedido 7199
-25/4/2020 18:19:53 - Maestro especialista: Alimento la masa madre
-25/4/2020 18:19:54 - Maestro panadero: Agregue un pan al canasto, cantidad: 3
-25/4/2020 18:19:54 - Maestro especialista: Entrego masa para pedido Sin numero
-25/4/2020 18:20:2 - Maestro Pizzero: Pedido numero: 7199 entregando pizza...
-25/4/2020 18:20:2 - Maestro especialista: Entrego masa para pedido hp<ş
-25/4/2020 18:20:5 - Maestro panadero: Agregue un pan al canasto, cantidad: 4
-25/4/2020 18:20:5 - Maestro especialista: Entrego masa para pedido Sin numero
-25/4/2020 18:20:9 - Maestro especialista: Alimento la masa madre
-25/4/2020 18:20:13 - Maestro Pizzero: Pedido numero: hp<ş entregando pizza...
-25/4/2020 18:20:13 - Maestro especialista: Entrego masa para pedido hp<ş
-25/4/2020 18:20:16 - Maestro panadero: Agregue un pan al canasto, cantidad: 5
-25/4/2020 18:20:16 - Maestro especialista: Entrego masa para pedido Sin numero
+25/4/2020 19:51:19 - Recepcionista: Hola soy su recepcionista
+25/4/2020 19:51:24 - Maestro especialista: Entrego masa para pedido sin numero
+25/4/2020 19:51:29 - Maestro especialista: Entrego masa para pedido sin numero
+25/4/2020 19:51:30 - Maestro panadero: Agregue un pan al canasto, cantidad: 1
+25/4/2020 19:51:34 - Maestro especialista: Entrego masa para pedido sin numero
+25/4/2020 19:51:35 - Maestro especialista: Alimento la masa madre
+25/4/2020 19:51:39 - Maestro especialista: Entrego masa para pedido sin numero
+25/4/2020 19:51:41 - Maestro panadero: Agregue un pan al canasto, cantidad: 2
+25/4/2020 19:51:44 - Maestro especialista: Entrego masa para pedido sin numero
+25/4/2020 19:51:47 - Maestro panadero: Agregue un pan al canasto, cantidad: 3
+ - Recepcionista: Retirandome
+ - Maestro panadero: Retirandome
+25/4/2020 19:51:47 - Maestro especialista: Alimento la masa madre
+25/4/2020 19:51:47 - Maestro especialista: Entrego masa para pedido sin numero
+ - Maestro especialista: Retirandome
+25/4/2020 19:51:49 - Maestro Pizzero: Pedido numero: àª€Gÿ entregando pizza...
+ - Maestro pizzero: Retirandome

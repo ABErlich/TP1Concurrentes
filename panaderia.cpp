@@ -6,10 +6,10 @@
 #include <sys/wait.h>
 #include "./Utility/logger.h"
 #include "./Utility/canasta.h"
+#include "./Utility/sigintHandler.h"
+#include "./Utility/signalHandler.h"
 
 using namespace std;
-#define CANT_INICIAL_PANES 5
-
 
 struct params_t {
     int cantRecepcionistas;
@@ -23,7 +23,9 @@ void crearProcesos(int cant, string execPath);
 int main (int argc, char **argv) {
     params_t params;
     Logger logger;
-    
+    SigintHandler sigint_handler;
+    SignalHandler::getInstance()->registrarHandler(SIGINT, &sigint_handler);
+
     try {
         params = parsearParametros(argc, argv);
     } catch (const exception&) { 
@@ -51,6 +53,8 @@ int main (int argc, char **argv) {
     for(int i = 0; i < totalProcesos; i++){
         wait(NULL);
     }
+
+    SignalHandler::destruir();
     return 0;
 }
 

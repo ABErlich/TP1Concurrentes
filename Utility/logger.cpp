@@ -5,7 +5,7 @@
 #include "lockFile.h"
 #include <fstream>
 
-Logger::Logger(): lock("log.txt") {
+Logger::Logger(): lock("log_temp.txt") {
     
 }
 

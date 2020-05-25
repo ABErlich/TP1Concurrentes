@@ -1,5 +1,5 @@
-maestroPizzero: maestroPizzero.o maestroEspecialista_com.o maestroPizzero_com.o logger.o lockFile.o 
-	g++ maestroPizzero.o maestroPizzero_com.o maestroEspecialista_com.o logger.o lockFile.o  -o maestroPizzero 
+maestroPizzero: maestroPizzero.o maestroEspecialista_com.o maestroPizzero_com.o logger.o lockFile.o signalHandler.o
+	g++ maestroPizzero.o maestroPizzero_com.o maestroEspecialista_com.o logger.o lockFile.o signalHandler.o -o maestroPizzero 
 
 maestroPizzero.o: maestroPizzero.cpp
 	g++ -c maestroPizzero.cpp
@@ -15,6 +15,9 @@ logger.o:
 
 maestroPizzero_com.o:
 	g++ -c ../Utility/maestroPizzero_com.cpp
+
+signalHandler.o:
+	g++ -c ../Utility/signalHandler.cpp
 
 clean:
 	rm *.o maestroPizzero

@@ -10,6 +10,8 @@
 #include <string.h>
 #include "../Utility/maestroEspecialista_com.h"
 #include "../Utility/logger.h"
+#include "../Utility/sigintHandler.h"
+#include "../Utility/signalHandler.h"
 
 #define FIN "fin"
 #define MASA "masa"
@@ -25,6 +27,9 @@ using namespace std;
 
 int main () {
     Logger logger;
+    SigintHandler sigint_handler;
+    SignalHandler::getInstance()->registrarHandler(SIGINT, &sigint_handler);
+
     pid_t pid = fork();
     if (pid < 0) {
         cout << "Error fork: " << string(strerror(errno)) << endl;
@@ -33,29 +38,24 @@ int main () {
 
     if (pid == 0) {
         // Proceso hijo
-        MaestroEspecialistaCom comunicacion;
-        while (true) {
+        //MaestroEspecialistaCom comunicacion;
+        while (sigint_handler.getGracefulQuit() == 0) {
+            MaestroEspecialistaCom comunicacion;
             std::string numero = comunicacion.entregarMasa();
+            sleep(5);
             logger.log(obtenerFechaYHora() + " - Maestro especialista: Entrego masa para pedido " + numero + '\n');
         }
         
         return 0;
     } else {
-        while (true) {
+        while (sigint_handler.getGracefulQuit() == 0) {
             sleep(MASA_MADRE_TIEMPO_ALIMENTACION);
             logger.log(obtenerFechaYHora() + " - Maestro especialista: Alimento la masa madre\n");
         }
     }
 
     wait(NULL);
-
+    logger.log(" - Maestro especialista: Retirandome\n");
+    SignalHandler::destruir();
     return 0;
-}
-
-void alimentarMasaMadre() {
-    
-
-    
-    
-    return;
 }

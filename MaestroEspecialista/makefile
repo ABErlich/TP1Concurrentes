@@ -1,5 +1,5 @@
-maestroEspecialista: maestroEspecialista.o maestroEspecialista_com.o logger.o lockFile.o
-	g++ maestroEspecialista.o maestroEspecialista_com.o logger.o lockFile.o -o maestroEspecialista
+maestroEspecialista: maestroEspecialista.o maestroEspecialista_com.o logger.o lockFile.o signalHandler.o
+	g++ maestroEspecialista.o maestroEspecialista_com.o logger.o lockFile.o signalHandler.o -o maestroEspecialista
 
 maestroEspecialista.o: maestroEspecialista.cpp
 	g++ -c maestroEspecialista.cpp
@@ -12,6 +12,9 @@ lockFile.o:
 
 logger.o:
 	g++ -c ../Utility/logger.cpp
+
+signalHandler.o:
+	g++ -c ../Utility/signalHandler.cpp
 
 clean:
 	rm *.o maestroEspecialista

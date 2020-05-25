@@ -4,6 +4,7 @@
 #include <string>
 #include <stdexcept>
 #include <sys/wait.h>
+#include "./Utility/logger.h"
 #include "./Utility/canasta.h"
 
 using namespace std;
@@ -21,8 +22,8 @@ void crearProcesos(int cant, string execPath);
 
 int main (int argc, char **argv) {
     params_t params;
+    Logger logger;
     
-
     try {
         params = parsearParametros(argc, argv);
     } catch (const exception&) { 
@@ -36,8 +37,10 @@ int main (int argc, char **argv) {
     // Creo los procesos en funcion de los parametros
     cout << "Creando al maestro especialista." << endl;
     crearProcesos(params.cantRecepcionistas, "./MaestroEspecialista/maestroEspecialista");
+
     cout << "Creando " << params.cantRecepcionistas << " recepcionistas." << endl;
     crearProcesos(params.cantRecepcionistas, "./Recepcionista/recepcionista");
+    
     cout << "Creando " << params.cantPanaderos << " panaderos." << endl;
     crearProcesos(params.cantPanaderos, "./MaestroPanadero/maestroPanadero");
     //cout << "Creando " << params.cantPanaderos << " panaderos." << endl;

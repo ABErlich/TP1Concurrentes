@@ -1,5 +1,5 @@
-recepcionista: recepcionista.o lockFile.o canasta.o
-	g++ recepcionista.o lockFile.o canasta.o -o recepcionista
+recepcionista: recepcionista.o lockFile.o canasta.o logger.o
+	g++ recepcionista.o lockFile.o canasta.o logger.o -o recepcionista
 
 recepcionista.o: recepcionista.cpp
 	g++ -c recepcionista.cpp
@@ -9,6 +9,10 @@ canasta.o: lockFile.o
 
 lockFile.o: 
 	g++ -c ../Utility/lockFile.cpp
+
+logger.o:
+	g++ -c ../Utility/logger.cpp
+
 
 clean:
 	rm *.o recepcionista

@@ -60,8 +60,8 @@ int main () {
 void esperarPedidoDePizza(MemoriaCompartida<int> &cantPrepizzas) {
     
     static const int BUFFSIZE = 100;
-    static const std::string ARCHIVO_FIFO_LECTURA = "../Fifos/Pizzero_Recepcionista";
-    static const std::string ARCHIVO_FIFO_ESCRITURA = "../Fifos/Recepcionista_Pizzero";
+    static const std::string ARCHIVO_FIFO_LECTURA = "../fifo_pizzero_recepcionista";
+    static const std::string ARCHIVO_FIFO_ESCRITURA = "../fifo_recepcionista_pizzero";
     char buffer[BUFFSIZE];
 
     while (true) {
@@ -81,7 +81,7 @@ void esperarPedidoDePizza(MemoriaCompartida<int> &cantPrepizzas) {
 
 void pedirMasaYPrepararPrepizza() {
     static const int BUFFSIZE = 100;
-    static const std::string ARCHIVO_FIFO_ESCRITURA = "../fifo_especialista_panadero";
+    static const std::string ARCHIVO_FIFO_ESCRITURA = "../fifo_especialista_maestro";
 
     FifoEscritura pedido (ARCHIVO_FIFO_ESCRITURA);
     pedido.escribir(MASA, sizeof(MASA));

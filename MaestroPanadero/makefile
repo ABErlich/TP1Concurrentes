@@ -1,5 +1,5 @@
-maestroPanadero: maestroPanadero.o canasta.o lockFile.o
-	g++ maestroPanadero.o canasta.o lockFile.o -o maestroPanadero
+maestroPanadero: maestroPanadero.o canasta.o lockFile.o logger.o
+	g++ maestroPanadero.o canasta.o lockFile.o logger.o -o maestroPanadero
 
 maestroPanadero.o: maestroPanadero.cpp
 	g++ -c maestroPanadero.cpp
@@ -9,6 +9,10 @@ canasta.o: lockFile.o
 
 lockFile.o:
 	g++ -c ../Utility/lockFile.cpp
+
+logger.o:
+	g++ -c ../Utility/logger.cpp
+
 
 clean:
 	rm *.o maestroPanadero

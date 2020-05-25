@@ -57,7 +57,7 @@ void alimentarMasaMadre() {
 void esperarPedidosDeMasa() {
 
     static const int BUFFSIZE = 100;
-    static const std::string ARCHIVO_FIFO_LECTURA = "./fifo_especialista_panadero";
+    static const std::string ARCHIVO_FIFO_LECTURA = "./fifo_especialista_maestro";
     char buffer[BUFFSIZE];
 
     while (true) {

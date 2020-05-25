@@ -6,7 +6,7 @@
 #include "../Utility/utility.h"
 #include "../Utility/memoriaCompartida.h"
 #include "../Utility/canasta.h"
-
+#include "../Utility/logger.h"
 
 #define PIZZA "pizza"
 #define PAN "pan"
@@ -19,21 +19,24 @@ using namespace std;
 //// EN CASO DE QUE EL PEDIDO SEA UN PAN, SE VA A FIJAR AL CANASTO SI HAY PAN, EN CASO DE NO HABER DEVUELVE QUE NO HAY
 //// EN CASO DE QUE EL PEDIDO SEA UNA PIZZA, DELEGA EL PEDIDO AL MAESTRO PIZZERO
 
-void hacerPedido(string pedido, int numeroPedido);
+void hacerPedido(string pedido, int numeroPedido, Logger &logger);
 string leerPedido();
 
 int main () {
 
     string pedido;
-    cout << obtenerFechaYHora() << " - Recepcionista: Hola soy su recepcionista" << endl;
+    Logger logger;
+
+    logger.log(obtenerFechaYHora() + " - Recepcionista: Hola soy su recepcionista\n");
     
     cin >> pedido;
     while (pedido.compare(FIN) != 0){
 
         int numeroPedido = rand() % 10000; // genero un numero random para el pedido
-        cout << obtenerFechaYHora() << " - Recepcionista: Pedido numero: " << numeroPedido << " en preparacion" << endl;
-        //sleep(TIEMPO_DE_RECUPERACION); // Simulo un tiempo que tarda el recepcionista en hacer el pedido 
-        hacerPedido(pedido, numeroPedido);
+        logger.log(obtenerFechaYHora() + " - Recepcionista: Pedido numero: " + to_string(numeroPedido) + " en preparacion\n");
+        
+        sleep(TIEMPO_DE_RECUPERACION); // Simulo un tiempo que tarda el recepcionista en hacer el pedido 
+        hacerPedido(pedido, numeroPedido, logger);
         
         cin >> pedido;
     }
@@ -54,7 +57,7 @@ string leerPedido() {
     }
    
 }
-void hacerPedido(string pedido, int numeroPedido) {
+void hacerPedido(string pedido, int numeroPedido, Logger &logger) {
     
     if (pedido.compare(PAN) == 0) {
         Canasta canasta;
@@ -63,18 +66,18 @@ void hacerPedido(string pedido, int numeroPedido) {
         int panes = canasta.sacarPan();
 
         if (panes > 0) {
-            cout << obtenerFechaYHora() << " - Recepcionista: Pedido numero: " << numeroPedido << " aqui tienes tu pan..." << endl;
-            cout << "Cantidad de panes que quedan: " << canasta.mirar() << endl;
+            logger.log(obtenerFechaYHora() + " - Recepcionista: Pedido numero: " + to_string(numeroPedido) + " aqui tienes tu pan...\n");
+            logger.log(obtenerFechaYHora() + " - Recepcionista: Cantidad de panes que quedan: " + to_string(canasta.mirar()) + '\n');
         } else {
-            cout << "Disculpe, no hay mas pan" << endl;
+            logger.log(obtenerFechaYHora() + "- Recepcionista: Pedido numero: " + to_string(numeroPedido) + " Disculpe, no hay mas pan\n");
         }
         
     } else if (pedido.compare(PIZZA) == 0) {
-        cout << "Preparando pizza" << endl;
+        cout << " - Recepcionista: Pedido numero: " << numeroPedido << endl;
         // En el caso de la pizza tengo que hacer el pedido a un maestro pizzero y esperar que la cocine
 
     } else {
-        cout << "El pedido " << pedido << " no forma parte del menu." << endl;
+        cout << " - Recepcionista: Pedido numero: " << numeroPedido << ", el pedido " << pedido << " no forma parte del menu." << endl;
     }
 
 }

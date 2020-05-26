@@ -39,7 +39,7 @@ int main () {
             comunicacionEspecialista.pedirMasa(numero); // LE PIDE LA MASA AL ESPECIALISTA
 
             sleep(TIEMPO_HORNEADO_PREPIZZA + TIEMPO_COCCION_PIZZA);
-            logger.log(obtenerFechaYHora() + " - Maestro Pizzero: Pedido numero: " + numero + " entregando pizza...\n");
+            logger.log(obtenerFechaYHora() + " - Maestro Pizzero: Pedido numero: " + numero + " entregando pizza al repartidor...\n");
         }
         
     }

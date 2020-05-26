@@ -24,19 +24,20 @@
 int main () {
     SigintHandler sigint_handler;
     SignalHandler::getInstance()->registrarHandler(SIGINT, &sigint_handler);
+    std::string panaderoPedidoId = "del panadero";
     Canasta canasta;
     Logger logger;
     MaestroEspecialistaCom comunicacion;
     
     while (sigint_handler.getGracefulQuit() == 0) {
-        comunicacion.pedirMasa(); // LE PIDE MASA AL ESPECIALISTA
+        comunicacion.pedirMasa(panaderoPedidoId); // LE PIDE MASA AL ESPECIALISTA
         sleep(TIEMPO_HORNEADO_PAN);
 
         int cantPanes = canasta.agregarPan(); // AGREGA EL PAN RECIEN HORNEADO AL CANASTO
         logger.log(obtenerFechaYHora() + " - Maestro panadero: Agregue un pan al canasto, cantidad: " + std::to_string(cantPanes) + '\n');
     }
     
-    logger.log(" - Maestro panadero: Retirandome\n");
+    logger.log(obtenerFechaYHora() + " - Maestro panadero: Retirandome\n");
     SignalHandler::destruir();
     return 0;
 }

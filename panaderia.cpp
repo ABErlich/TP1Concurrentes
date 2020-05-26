@@ -23,8 +23,6 @@ void crearProcesos(int cant, string execPath);
 int main (int argc, char **argv) {
     params_t params;
     Logger logger;
-    SigintHandler sigint_handler;
-    SignalHandler::getInstance()->registrarHandler(SIGINT, &sigint_handler);
 
     try {
         params = parsearParametros(argc, argv);
@@ -49,12 +47,8 @@ int main (int argc, char **argv) {
     cout << "Creando " << params.cantPanaderos << " panaderos." << endl;
     crearProcesos(params.cantPanaderos, "./MaestroPanadero/maestroPanadero");
 
-    int totalProcesos = params.cantRecepcionistas + params.cantPanaderos + params.cantPizzeros + 1; // 1 por el maestro especialista
-    for(int i = 0; i < totalProcesos; i++){
-        wait(NULL);
-    }
+    wait(NULL);
 
-    SignalHandler::destruir();
     return 0;
 }
 

@@ -10,10 +10,16 @@ MaestroPizzeroCom::MaestroPizzeroCom() : fd(-1), nombre("./tmp/pizzero_fifo") {
 }
 
 std::string MaestroPizzeroCom::esperarPedido() {
-    char numero[100];
+    char numero[100] = "\0";
 
-    fd = open(nombre.c_str(), O_RDONLY);
-    read(fd, numero, sizeof(numero));
+    if((fd = open(nombre.c_str(), O_RDONLY)) < 0){
+        numero[0] = '\0';
+        return std::string(numero);
+    };
+
+    if(read(fd, numero, sizeof(numero)) < 0){
+        numero[0] = '\0';
+    }
     close(fd);
 
     return std::string(numero);
@@ -21,10 +27,16 @@ std::string MaestroPizzeroCom::esperarPedido() {
 
 void MaestroPizzeroCom::pedirPizza(std::string numeroPedido) {
 
-    fd = open(nombre.c_str(), O_WRONLY);
-    write(fd, numeroPedido.c_str(), sizeof(numeroPedido));
-    close(fd);
+    if((fd = open(nombre.c_str(), O_WRONLY)) < 0){
+        std::cout << "Error en pedido: " << numeroPedido << std::endl;
+        return;
+    };
+
+    if(write(fd, numeroPedido.c_str(), sizeof(numeroPedido)) < 0){
+        std::cout << "Error en pedido: " << numeroPedido << std::endl;
+    };
     
+    close(fd);
 }
 
 MaestroPizzeroCom::~MaestroPizzeroCom() {

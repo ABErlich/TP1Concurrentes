@@ -38,12 +38,16 @@ int main () {
 
     if (pid == 0) {
         // Proceso hijo
-        //MaestroEspecialistaCom comunicacion;
+        MaestroEspecialistaCom comunicacion;
         while (sigint_handler.getGracefulQuit() == 0) {
-            MaestroEspecialistaCom comunicacion;
-            std::string numero = comunicacion.entregarMasa();
-            sleep(5);
-            logger.log(obtenerFechaYHora() + " - Maestro especialista: Entrego masa para pedido " + numero + '\n');
+            try {
+                std::string numero = comunicacion.entregarMasa();
+                if(numero.length() > 0) {
+                    logger.log(obtenerFechaYHora() + " - Maestro especialista: Entrego masa para pedido " + numero + '\n');
+                }
+            } catch (const std::exception& e) {
+                logger.log(e.what());
+            }
         }
         
         return 0;
@@ -55,7 +59,7 @@ int main () {
     }
 
     wait(NULL);
-    logger.log(" - Maestro especialista: Retirandome\n");
+    logger.log(obtenerFechaYHora() + " - Maestro especialista: Retirandome\n");
     SignalHandler::destruir();
     return 0;
 }

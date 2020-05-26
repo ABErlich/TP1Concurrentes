@@ -30,6 +30,8 @@ int main () {
     Logger logger;
     SigintHandler sigint_handler;
     SignalHandler::getInstance()->registrarHandler(SIGINT, &sigint_handler);
+    MaestroPizzeroCom comunicacionPizzero;
+    Canasta canasta;
 
     logger.log(obtenerFechaYHora() + " - Recepcionista: Hola soy su recepcionista\n");
 
@@ -37,15 +39,40 @@ int main () {
     while (sigint_handler.getGracefulQuit() == 0){
         cin >> pedido;
 
-        // genero un numero pseudo random para el pedido
-        srand(time(0));
-        int numeroPedido = rand() % 10000; 
-        
-        hacerPedido(pedido, numeroPedido, logger);
-        
+        if(pedido.length() > 0){
+            // genero un numero pseudo random para el pedido
+            srand(time(0));
+            int numeroPedido = rand() % 10000; 
+            
+            if (pedido.compare(PAN) == 0) {
+
+                 // En el caso del pan, tengo que ir a la canasta y ver si hay algun pan
+                logger.log(obtenerFechaYHora() + " - Recepcionista: Pedido numero: " + to_string(numeroPedido) + " yendo a buscar pan.\n");
+                sleep(TIEMPO_DE_BUSCAR_PAN);
+                int panes = canasta.sacarPan();
+
+                if (panes > 0) {
+                    logger.log(obtenerFechaYHora() + " - Recepcionista: Pedido numero: " + to_string(numeroPedido) + " aqui tienes tu pan. Quedan: " + to_string(canasta.mirar()) +"\n");
+                } else {
+                    logger.log(obtenerFechaYHora() + "- Recepcionista: Pedido numero: " + to_string(numeroPedido) + " Disculpe, no hay mas pan\n");
+                }
+
+            } else if (pedido.compare(PIZZA) == 0) {
+
+                logger.log(obtenerFechaYHora() + " - Recepcionista: Pedido numero: " + to_string(numeroPedido) + " pizza en preparacion\n");
+                comunicacionPizzero.pedirPizza(to_string(numeroPedido));
+
+                sleep(TIEMPO_DE_PEDIR_PIZZA);
+            } else {
+                logger.log(obtenerFechaYHora() + " - Recepcionista: Pedido numero: " + to_string(numeroPedido) + ", el pedido " + pedido + " no forma parte del menu.\n");
+            }
+
+        }
+
+        pedido = "\0";
     }
 
-    logger.log(" - Recepcionista: Retirandome\n");
+    logger.log(obtenerFechaYHora() + " - Recepcionista: Retirandome\n");
     SignalHandler::destruir();
     return 0;
 }

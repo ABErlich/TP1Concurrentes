@@ -15,8 +15,8 @@
 #include "../Utility/sigintHandler.h"
 #include "../Utility/signalHandler.h"
 
-#define TIEMPO_HORNEADO_PREPIZZA 1
-#define TIEMPO_COCCION_PIZZA 1
+#define TIEMPO_HORNEADO_PREPIZZA 5
+#define TIEMPO_COCCION_PIZZA 4
 
 using namespace std;
 
@@ -28,19 +28,23 @@ int main () {
     Logger logger;
     SigintHandler sigint_handler;
     SignalHandler::getInstance()->registrarHandler(SIGINT, &sigint_handler);
+    MaestroPizzeroCom comunicacionRecepcionista;
+    MaestroEspecialistaCom comunicacionEspecialista;
     
     while (sigint_handler.getGracefulQuit() == 0) {
-        MaestroEspecialistaCom comunicacionEspecialista;
-        MaestroPizzeroCom comunicacionRecepcionista;
-        
+ 
         std::string numero = comunicacionRecepcionista.esperarPedido(); // ACA BLOQUEA HASTA QUE LE LLEGA UN PEDIDO DE PIZZA
-        comunicacionEspecialista.pedirMasa(numero); // LE PIDE LA MASA AL ESPECIALISTA
+        
+        if(numero.length() > 0){
+            comunicacionEspecialista.pedirMasa(numero); // LE PIDE LA MASA AL ESPECIALISTA
 
-        sleep(TIEMPO_HORNEADO_PREPIZZA + TIEMPO_COCCION_PIZZA);
-        logger.log(obtenerFechaYHora() + " - Maestro Pizzero: Pedido numero: " + numero + " entregando pizza...\n");
+            sleep(TIEMPO_HORNEADO_PREPIZZA + TIEMPO_COCCION_PIZZA);
+            logger.log(obtenerFechaYHora() + " - Maestro Pizzero: Pedido numero: " + numero + " entregando pizza...\n");
+        }
+        
     }
 
-    logger.log(" - Maestro pizzero: Retirandome\n");
+    logger.log(obtenerFechaYHora() + " - Maestro pizzero: Retirandome\n");
     SignalHandler::destruir();
     return 0;
 }

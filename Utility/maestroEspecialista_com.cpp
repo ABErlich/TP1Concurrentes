@@ -26,7 +26,7 @@ std::string MaestroEspecialistaCom::entregarMasa() {
 void MaestroEspecialistaCom::pedirMasa() {
     //lock.tomarLock();
     if((fd = open(nombre.c_str(), O_WRONLY)) < 0) {
-        std::cout << "Error en pedido sin numero" << std::endl;
+        
     };
     close(fd);
     //lock.liberarLock();
@@ -35,7 +35,7 @@ void MaestroEspecialistaCom::pedirMasa() {
 void MaestroEspecialistaCom::pedirMasa(std::string numero) {
     //lock.tomarLock();
     if((fd = open(nombre.c_str(), O_WRONLY)) < 0) {
-        std::cout << "Error en pedido " << numero << std::endl;
+        
     };
     write(fd, numero.c_str(), sizeof(numero));
     close(fd);

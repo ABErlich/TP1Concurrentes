@@ -52,7 +52,7 @@ int main () {
                 int panes = canasta.sacarPan();
 
                 if (panes > 0) {
-                    logger.log(obtenerFechaYHora() + " - Recepcionista: Pedido numero: " + to_string(numeroPedido) + " entregando al repartidor. Quedan: " + to_string(canasta.mirar()) +"\n");
+                    logger.log(obtenerFechaYHora() + " - Recepcionista: Pedido numero: " + to_string(numeroPedido) + " entregando pan al repartidor. Quedan: " + to_string(canasta.mirar()) +"\n");
                 } else {
                     logger.log(obtenerFechaYHora() + "- Recepcionista: Pedido numero: " + to_string(numeroPedido) + " Disculpe, no hay mas pan\n");
                 }

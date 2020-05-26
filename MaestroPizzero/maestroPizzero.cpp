@@ -15,14 +15,13 @@
 #include "../Utility/sigintHandler.h"
 #include "../Utility/signalHandler.h"
 
-#define TIEMPO_HORNEADO_PREPIZZA 5
-#define TIEMPO_COCCION_PIZZA 4
-
 using namespace std;
 
 //// EL MAESTRO PIZZERO VA A ESTAR COMPUESTO POR DOS PROCESOS
 //// 1) EL PRIMER PROCESO SE VA A ENCARGAR DE CADA X TIEMPO, PEDIRLE MASA A EL MAESTRO ESPECIALISTA Y PREPARAR LA PREPIZZA
 //// 2) EL SEGUNDO PROCESO SE VA A ENCARGAR DE ESCUCHAR LOS PEDIDOS DEL RECEPCIONISTA, Y AL RECIBIR UNO, COCINAR LA PIZZA
+
+unsigned int tiempoVariable();
 
 int main () {
     Logger logger;
@@ -38,7 +37,8 @@ int main () {
         if(numero.length() > 0){
             comunicacionEspecialista.pedirMasa(numero); // LE PIDE LA MASA AL ESPECIALISTA
 
-            sleep(TIEMPO_HORNEADO_PREPIZZA + TIEMPO_COCCION_PIZZA);
+            //TIEMPO VARIABLE QUE TARDA EN COCINARSE LA PIZZA
+            sleep(tiempoVariable());
             logger.log(obtenerFechaYHora() + " - Maestro Pizzero: Pedido numero: " + numero + " entregando pizza al repartidor...\n");
         }
         
@@ -49,3 +49,8 @@ int main () {
     return 0;
 }
 
+unsigned int tiempoVariable () {
+	srand(time(0));
+	unsigned int resultado = (unsigned int)(rand() % 20 + 1);
+	return resultado;
+}

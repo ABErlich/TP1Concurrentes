@@ -28,12 +28,12 @@ std::string MaestroPizzeroCom::esperarPedido() {
 void MaestroPizzeroCom::pedirPizza(std::string numeroPedido) {
 
     if((fd = open(nombre.c_str(), O_WRONLY)) < 0){
-        std::cout << "Error en pedido: " << numeroPedido << std::endl;
+        
         return;
     };
 
     if(write(fd, numeroPedido.c_str(), sizeof(numeroPedido)) < 0){
-        std::cout << "Error en pedido: " << numeroPedido << std::endl;
+        
     };
     
     close(fd);

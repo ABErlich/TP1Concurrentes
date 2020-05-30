@@ -10,17 +10,20 @@ class MaestroEspecialistaCom {
 
 protected:
 	int fd;
-	LockFile lock;
-	std::string nombre;
+	LockFile lockPedido;
+	LockFile lockEntrega;
+	std::string nombreIda;
+	std::string nombreVuelta;
 
 public:
 	MaestroEspecialistaCom();
 	virtual ~MaestroEspecialistaCom();
 
+	std::string esperarPedido();
     void pedirMasa();
 	void pedirMasa(std::string numero);
-    std::string entregarMasa();
-
+    void entregarMasa();
+	std::string esperarMasa();
 
 };
 

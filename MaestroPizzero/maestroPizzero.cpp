@@ -33,10 +33,14 @@ int main () {
     while (sigint_handler.getGracefulQuit() == 0) {
  
         std::string numero = comunicacionRecepcionista.esperarPedido(); // ACA BLOQUEA HASTA QUE LE LLEGA UN PEDIDO DE PIZZA
+        std::string respuesta;
         
         if(numero.length() > 0){
-            comunicacionEspecialista.pedirMasa(numero); // LE PIDE LA MASA AL ESPECIALISTA
+            logger.log(obtenerFechaYHora() + " - Maestro Pizzero: Pedido numero: " + numero + " pizza en preparacion...\n");
 
+            comunicacionEspecialista.pedirMasa(numero); // LE PIDE LA MASA AL ESPECIALISTA
+            respuesta = comunicacionEspecialista.esperarMasa();
+            logger.log(obtenerFechaYHora() + " - Maestro Pizzero: Recibido del especialista: " + respuesta + " para el pedido " + numero +"\n");
             //TIEMPO VARIABLE QUE TARDA EN COCINARSE LA PIZZA
             sleep(tiempoVariable());
             logger.log(obtenerFechaYHora() + " - Maestro Pizzero: Pedido numero: " + numero + " entregando pizza al repartidor...\n");

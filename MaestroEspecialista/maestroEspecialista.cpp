@@ -37,6 +37,7 @@ int main () {
     }
 
     if (pid == 0) {
+
         // Proceso hijo
         MaestroEspecialistaCom comunicacion;
         while (sigint_handler.getGracefulQuit() == 0) {
@@ -51,11 +52,14 @@ int main () {
         }
         
         return 0;
+
     } else {
+
         while (sigint_handler.getGracefulQuit() == 0) {
             sleep(MASA_MADRE_TIEMPO_ALIMENTACION);
             logger.log(obtenerFechaYHora() + " - Maestro especialista: Alimento la masa madre\n");
         }
+        
     }
 
     wait(NULL);

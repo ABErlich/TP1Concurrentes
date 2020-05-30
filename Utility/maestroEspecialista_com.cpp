@@ -16,30 +16,31 @@ std::string MaestroEspecialistaCom::entregarMasa() {
         
     };
 
-    if(read(fd, numero, sizeof(numero)) < 0){
-        close(fd);
-    };
+    read(fd, numero, sizeof(numero));
+    close(fd);
 
     return std::string(numero);
 }
 
 void MaestroEspecialistaCom::pedirMasa() {
-    //lock.tomarLock();
+    lock.tomarLock();
     if((fd = open(nombre.c_str(), O_WRONLY)) < 0) {
         
     };
     close(fd);
-    //lock.liberarLock();
+    lock.liberarLock();
 }
 
 void MaestroEspecialistaCom::pedirMasa(std::string numero) {
-    //lock.tomarLock();
+
+    lock.tomarLock();
     if((fd = open(nombre.c_str(), O_WRONLY)) < 0) {
         
     };
     write(fd, numero.c_str(), sizeof(numero));
     close(fd);
-    //lock.liberarLock();
+    lock.liberarLock();
+    
 }
 
 

@@ -36,7 +36,7 @@ int main () {
     logger.log(obtenerFechaYHora() + " - Recepcionista: Hola soy su recepcionista\n");
 
     
-    while (sigint_handler.getGracefulQuit() == 0){
+    while (sigint_handler.getGracefulQuit() == 0) {
         cin >> pedido;
 
         if(pedido.length() > 0){

@@ -12,6 +12,7 @@ MaestroPizzeroCom::MaestroPizzeroCom() : fd(-1), nombre("./tmp/pizzero_fifo") {
 std::string MaestroPizzeroCom::esperarPedido() {
     char numero[100] = "\0";
 
+    
     if((fd = open(nombre.c_str(), O_RDONLY)) < 0){
         numero[0] = '\0';
         return std::string(numero);

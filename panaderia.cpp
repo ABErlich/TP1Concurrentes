@@ -38,9 +38,11 @@ int main (int argc, char **argv) {
     cout << "Creando al maestro especialista." << endl;
     crearProcesos(1, "./MaestroEspecialista/maestroEspecialista");
 
+    // recepcionistas
     cout << "Creando " << params.cantRecepcionistas << " recepcionistas." << endl;
     crearProcesos(params.cantRecepcionistas, "./Recepcionista/recepcionista");
 
+    
     cout << "Creando " << params.cantPizzeros << " pizzeros." << endl;
     crearProcesos(params.cantPizzeros, "./MaestroPizzero/maestroPizzero");
     

@@ -42,10 +42,14 @@ int main () {
         MaestroEspecialistaCom comunicacion;
         while (sigint_handler.getGracefulQuit() == 0) {
             try {
-                std::string numero = comunicacion.entregarMasa();
+
+                std::string numero = comunicacion.esperarPedido();
+                
                 if(numero.length() > 0) {
                     logger.log(obtenerFechaYHora() + " - Maestro especialista: Entrego masa para pedido " + numero + '\n');
                 }
+                
+                comunicacion.entregarMasa();
             } catch (const std::exception& e) {
                 logger.log(e.what());
             }

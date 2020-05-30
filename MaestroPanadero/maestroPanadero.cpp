@@ -31,6 +31,7 @@ int main () {
     
     while (sigint_handler.getGracefulQuit() == 0) {
         comunicacion.pedirMasa(panaderoPedidoId); // LE PIDE MASA AL ESPECIALISTA
+        comunicacion.esperarMasa();
         sleep(TIEMPO_HORNEADO_PAN);
 
         int cantPanes = canasta.agregarPan(); // AGREGA EL PAN RECIEN HORNEADO AL CANASTO

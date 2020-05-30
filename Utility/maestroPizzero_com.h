@@ -4,6 +4,7 @@
 #include <string>
 #include <fcntl.h>
 #include <sys/stat.h>
+#include "lockFile.h"
 
 class MaestroPizzeroCom {
 public:
@@ -16,6 +17,8 @@ public:
 protected:
 	int fd;
 	std::string nombre;
+	LockFile lockRecepcionista;
+	LockFile lockPizzero;
 };
 
 
